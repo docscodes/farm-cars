@@ -1,4 +1,3 @@
-import cloudinary
 from fastapi import (
     APIRouter,
     Body,
@@ -17,6 +16,8 @@ from config import BaseConfig
 from authentication import AuthHandler
 from models.cars import CarCollection, CarCollectionPagination, CarModel, UpdateCarModel
 
+import cloudinary
+from cloudinary import uploader
 
 auth_handler = AuthHandler()
 settings = BaseConfig()
@@ -59,7 +60,7 @@ async def add_car_with_picture(
     km: int = Form("km"),
     price: int = Form("price"),
     picture: UploadFile = File("picture"),
-    #user=Depends(auth_handler.auth_wrapper),
+    user=Depends(auth_handler.auth_wrapper),
 ):
     """Upload picture to Cloudinary and create a new car with a generated id."""
 
@@ -77,7 +78,7 @@ async def add_car_with_picture(
         km=km,
         price=price,
         picture_url=picture_url,
-        #user_id=user["user_id"],
+        user_id=user["user_id"],
     )
 
     cars = request.app.db["cars"]
