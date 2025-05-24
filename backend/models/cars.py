@@ -19,7 +19,7 @@ class CarModel(BaseModel):
     km: int = Field(..., gt=0, lt=500 * 1000)
     price: int = Field(..., gt=0, lt=100000)
     # user_id: str = Field(...)
-    # picture_url: Optional[str] = Field(None)
+    picture_url: Optional[str] = Field(None)
 
     @field_validator("brand")
     @classmethod
