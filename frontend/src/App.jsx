@@ -1,4 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import AuthRequired from "./components/AuthRequired";
 import { AuthProvider } from "./contexts/AuthContext";
 import RootLayout from "./layouts/RootLayout";
 import Car from "./pages/Car";
@@ -15,7 +16,9 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="cars" element={<Cars />} loader={carsLoader} />
       <Route path="cars/:id" element={<Car />} />
-      <Route path="new-car" element={<NewCar />} />
+      <Route element={<AuthRequired />}>
+        <Route path="new-car" element={<NewCar />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Route>
   )
