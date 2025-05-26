@@ -1,4 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import RootLayout from "./layouts/RootLayout";
 import Car from "./pages/Car";
 import Cars, { carsLoader } from "./pages/Cars";
@@ -21,5 +22,9 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
