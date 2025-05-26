@@ -1,5 +1,11 @@
+import CarForm from "../components/CarForm";
+
 const NewCar = () => {
-  return <div>NewCar</div>;
+  return (
+    <div>
+      <CarForm />
+    </div>
+  );
 };
 
 export default NewCar;
