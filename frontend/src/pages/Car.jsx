@@ -1,5 +1,10 @@
+import { useLoaderData } from "react-router-dom";
+import CarCard from "../components/CarCard";
+
 const Car = () => {
-  return <div>Car</div>;
+  const car = useLoaderData();
+
+  return <CarCard car={car} />;
 };
 
 export default Car;

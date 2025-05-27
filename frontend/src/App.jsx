@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NewCar from "./pages/NewCar";
 import NotFound from "./pages/NotFound";
+import fetchCarData from "./utils/fetchCarData";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,7 +16,15 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="cars" element={<Cars />} loader={carsLoader} />
-      <Route path="cars/:id" element={<Car />} />
+
+      <Route
+        path="cars/:id"
+        element={<Car />}
+        loader={async ({ params }) => {
+          return fetchCarData(params.id);
+        }}
+        errorElement={<NotFound />}
+      />
       <Route element={<AuthRequired />}>
         <Route path="new-car" element={<NewCar />} />
       </Route>
