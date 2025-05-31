@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     app.client.close()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, title="farm-cars")
 
 app.add_middleware(
     CORSMiddleware,
